@@ -1,18 +1,76 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/Bush.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/World/GrassBackground.png" type="Texture" id=3]
+[ext_resource path="res://assets/World/DirtTileset.png" type="Texture" id=4]
+[ext_resource path="res://scenes/World.gd" type="Script" id=5]
 
-[node name="World" type="YSort"]
+[sub_resource type="TileSet" id=1]
+0/name = "DirtTileset.png 0"
+0/texture = ExtResource( 4 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 176, 80 )
+0/tile_mode = 1
+0/autotile/bitmask_mode = 1
+0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 432, Vector2( 0, 1 ), 438, Vector2( 0, 2 ), 54, Vector2( 0, 3 ), 48, Vector2( 1, 0 ), 504, Vector2( 1, 1 ), 511, Vector2( 1, 2 ), 63, Vector2( 1, 3 ), 56, Vector2( 2, 0 ), 216, Vector2( 2, 1 ), 219, Vector2( 2, 2 ), 27, Vector2( 2, 3 ), 24, Vector2( 3, 0 ), 144, Vector2( 3, 1 ), 146, Vector2( 3, 2 ), 18, Vector2( 3, 3 ), 16, Vector2( 4, 0 ), 176, Vector2( 4, 1 ), 182, Vector2( 4, 2 ), 434, Vector2( 4, 3 ), 50, Vector2( 4, 4 ), 178, Vector2( 5, 0 ), 248, Vector2( 5, 1 ), 255, Vector2( 5, 2 ), 507, Vector2( 5, 3 ), 59, Vector2( 5, 4 ), 251, Vector2( 6, 0 ), 440, Vector2( 6, 1 ), 447, Vector2( 6, 2 ), 510, Vector2( 6, 3 ), 62, Vector2( 6, 4 ), 446, Vector2( 7, 0 ), 152, Vector2( 7, 1 ), 155, Vector2( 7, 2 ), 218, Vector2( 7, 3 ), 26, Vector2( 7, 4 ), 154, Vector2( 8, 0 ), 184, Vector2( 8, 1 ), 191, Vector2( 8, 2 ), 506, Vector2( 8, 3 ), 58, Vector2( 8, 4 ), 186, Vector2( 9, 0 ), 443, Vector2( 9, 1 ), 254, Vector2( 9, 2 ), 442, Vector2( 9, 3 ), 190, Vector2( 10, 2 ), 250, Vector2( 10, 3 ), 187 ]
+0/autotile/icon_coordinate = Vector2( 3, 3 )
+0/autotile/tile_size = Vector2( 16, 16 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shapes = [  ]
+0/z_index = 0
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
+[node name="World" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 160, 90 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( -128, -64, 320, 180 )
+
+[node name="TextureRectBackground" type="TextureRect" parent="."]
+visible = false
+margin_right = 320.0
+margin_bottom = 184.0
+texture = ExtResource( 3 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -65528, 0, 0, -65527, 0, 2, 8, 0, 65536, 9, 0, 65538, 65544, 0, 65536, 65545, 0, 131077, 65546, 0, 1, 65547, 0, 2, 65553, 0, 4, 65554, 0, 196609, 65555, 0, 196609, 65556, 0, 196610, 131080, 0, 131072, 131081, 0, 131073, 131082, 0, 65542, 131083, 0, 65538, 131088, 0, 4, 131089, 0, 196615, 196618, 0, 65536, 196619, 0, 262149, 196620, 0, 196609, 196621, 0, 196609, 196622, 0, 196609, 196623, 0, 196609, 196624, 0, 196615, 262154, 0, 65536, 262155, 0, 65538, 327690, 0, 65536, 327691, 0, 65538, 393224, 0, 0, 393225, 0, 1, 393226, 0, 65545, 393227, 0, 131074, 458759, 0, 0, 458760, 0, 65545, 458761, 0, 131073, 458762, 0, 131074, 524295, 0, 65536, 524296, 0, 65538, 589831, 0, 65536, 589832, 0, 65538, 655367, 0, 65536, 655368, 0, 65538, 720903, 0, 131072, 720904, 0, 131074 )
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Player" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 96, 48 )
 
-[node name="Bush" parent="." instance=ExtResource( 1 )]
-position = Vector2( 72, 24 )
+[node name="Bush" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 52.1944, 37.6439 )
 
-[node name="Bush2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 160, 48 )
+[node name="Bush2" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 222.058, 76.168 )
 
-[node name="Bush3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 104, 88 )
+[node name="Bush3" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 167.818, 135.533 )
+
+[node name="Bush4" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 89.6423, 153.023 )
+
+[node name="Bush5" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 105.927, 85.6843 )
+
+[node name="Bush6" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 279.776, 131.457 )
