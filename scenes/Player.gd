@@ -20,6 +20,8 @@ func _physics_process(delta):
 		# --------------------
 		# we defined Animation up and animation down to 1.1 so that animation left and right (are on 1)
 		# are prioritized
+		# --------------------
+		# these "parameters/..." are the path to the properties you can see on the inspector on the right side
 		animation_tree.set("parameters/Idle/blend_position", input_vector)
 		animation_tree.set("parameters/Run/blend_position", input_vector)
 		animation_state.travel("Run")
