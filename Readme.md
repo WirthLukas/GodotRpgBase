@@ -14,3 +14,10 @@ There are 2 Options:
 In the Z-index label of the Tileset you can define the z-index of a tile. If it is a higher number it will be drawn before other sprites with lower numbers (default is 0). With this you can define that the player sprite should be drawn behind the end of a cliff.
 
 But this doesn't work that well with the cliff textures, because they are transparent. So you would see the player if he is behind the cliff or not...
+
+## Grouping Nodes in Y-Sort
+
+For example, we grouped all the bushes into one node. When you want that the Y-Sort should also work with 
+the bushes node, then the node have to be from type y-sort!
+
+
