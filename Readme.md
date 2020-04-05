@@ -20,4 +20,8 @@ But this doesn't work that well with the cliff textures, because they are transp
 For example, we grouped all the bushes into one node. When you want that the Y-Sort should also work with 
 the bushes node, then the node have to be from type y-sort!
 
+## Collision Raster in Physics Nodes
+
+Layer: The layer where this object is
+Mask: The layer where the object is "looking" on 
 

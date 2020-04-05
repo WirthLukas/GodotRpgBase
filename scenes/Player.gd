@@ -18,11 +18,8 @@ onready var animation_state = animation_tree.get("parameters/playback")
 func _ready():
 	animation_tree.active = true
 
-# _physic_process gets called more often than the normal process function
-# when you don't user a variable of the KinematicBody, you can use
-# the normal process function, which makes the game a little smoother
-# func _physics_process(delta):
-func _process(delta):
+# the function move_and_slide should be called in _physics_process
+func _physics_process(delta):
 	match state:
 		State.MOVE:
 			move_state(delta)
