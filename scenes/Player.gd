@@ -6,10 +6,12 @@ enum State {
 
 const ACCELERATION = 400
 const MAX_SPEED = 80
+const ROLL_SPEED = 120 # roll should be a little faster than normal speed
 const FRICTION = 500
 
 var state = State.MOVE
 var velocity = Vector2.ZERO
+var roll_vector = Vector2.LEFT
 
 onready var animation_player = $AnimationPlayer
 onready var animation_tree = $AnimationTree
@@ -24,18 +26,20 @@ func _physics_process(delta):
 		State.MOVE:
 			move_state(delta)
 		State.ROLL:
-			pass
+			roll_state()
 		State.ATTACK:
-			attack_state(delta)
+			attack_state()
 
 
 func move_state(delta):
 	var input_vector = get_input_vector()
 	
 	if input_vector != Vector2.ZERO:
+		roll_vector = input_vector
 		animation_tree.set("parameters/Idle/blend_position", input_vector)
 		animation_tree.set("parameters/Run/blend_position", input_vector)
 		animation_tree.set("parameters/Attack/blend_position", input_vector)   # adding input vector to attack animation
+		animation_tree.set("parameters/Roll/blend_position", input_vector)
 		animation_state.travel("Run")
 		
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
@@ -43,7 +47,10 @@ func move_state(delta):
 		animation_state.travel("Idle")
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	
-	velocity = move_and_slide(velocity)  # not + delta, because it handles this for us (see it in the docs)
+	move()
+	
+	if Input.is_action_just_pressed("roll"):
+		state = State.ROLL
 	
 	if Input.is_action_just_pressed("attack"):
 		state = State.ATTACK
@@ -59,9 +66,24 @@ func get_input_vector():
 	return input_vector
 
 
-func attack_state(delta):
+func roll_state():
+	velocity = roll_vector * ROLL_SPEED
+	animation_state.travel("Roll")
+	move()
+
+
+func attack_state():
 	velocity = Vector2.ZERO
 	animation_state.travel("Attack")
+
+
+func move():
+	velocity = move_and_slide(velocity)  # not + delta, because it handles this for us (see it in the docs)
+
+
+func roll_animation_finished():
+	velocity = velocity * .8   # to reduce sliding at the end of the animation
+	state = State.MOVE
 
 
 func attack_animation_finished():
