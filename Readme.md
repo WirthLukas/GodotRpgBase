@@ -25,3 +25,10 @@ the bushes node, then the node have to be from type y-sort!
 Layer: The layer where this object is
 Mask: The layer where the object is "looking" on 
 
+## Enemies
+
+### Bat
+
+* We are moving the y offset of the sprite to -12 so that the bat looks like it would fly
+* We added another Layer for enemies 
+* Press `Strg` + `D` to duplicate the enemies 

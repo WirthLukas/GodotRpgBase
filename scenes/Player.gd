@@ -16,9 +16,11 @@ var roll_vector = Vector2.LEFT
 onready var animation_player = $AnimationPlayer
 onready var animation_tree = $AnimationTree
 onready var animation_state = animation_tree.get("parameters/playback")
+onready var swordHitbox = $HitboxPivot/SwordHitbox
 
 func _ready():
 	animation_tree.active = true
+	swordHitbox.knockback_vector = roll_vector
 
 # the function move_and_slide should be called in _physics_process
 func _physics_process(delta):
@@ -36,6 +38,7 @@ func move_state(delta):
 	
 	if input_vector != Vector2.ZERO:
 		roll_vector = input_vector
+		swordHitbox.knockback_vector = input_vector
 		animation_tree.set("parameters/Idle/blend_position", input_vector)
 		animation_tree.set("parameters/Run/blend_position", input_vector)
 		animation_tree.set("parameters/Attack/blend_position", input_vector)   # adding input vector to attack animation
