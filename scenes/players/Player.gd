@@ -56,6 +56,7 @@ func move_state(delta):
 	move()
 	
 	if Input.is_action_just_pressed("roll"):
+		# PlayerStats.max_health -= 1
 		state = State.ROLL
 	
 	if Input.is_action_just_pressed("attack"):

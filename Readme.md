@@ -36,3 +36,7 @@ Mask: The layer where the object is "looking" on
 ## Player Detection Zone
 
 You have to set the Mask of the Collision to Player, so that the signal only gets called, when a player entered the zone
+
+## Hearts UI
+
+If you want to set the TextureRect's width to 0, you must activate the expand option
