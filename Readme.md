@@ -32,3 +32,7 @@ Mask: The layer where the object is "looking" on
 * We are moving the y offset of the sprite to -12 so that the bat looks like it would fly
 * We added another Layer for enemies 
 * Press `Strg` + `D` to duplicate the enemies 
+
+## Player Detection Zone
+
+You have to set the Mask of the Collision to Player, so that the signal only gets called, when a player entered the zone

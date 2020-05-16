@@ -3,7 +3,7 @@ extends Node2D
 # for optimization you could add the grass effect sprite to this scene,
 # instead of making a seperate scene
 # you have to worry about, disabled the hurtbox, when playing the effect animation
-const GrassEffect = preload("res://scenes/GrassEffect.tscn")
+const GrassEffect = preload("res://scenes/effects/GrassEffect.tscn")
 
 
 func create_grass_effect():
