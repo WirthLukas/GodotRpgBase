@@ -11,7 +11,7 @@ export var FRICTION = 500
 
 var state = State.MOVE
 var velocity = Vector2.ZERO
-var roll_vector = Vector2.LEFT
+var roll_vector = Vector2.DOWN
 
 onready var animation_player = $AnimationPlayer
 onready var animation_tree = $AnimationTree
