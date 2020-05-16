@@ -19,6 +19,10 @@ config/name="RpgBase"
 run/main_scene="res://scenes/World.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+PlayerStats="*res://scenes/players/PlayerStats.tscn"
+
 [display]
 
 window/size/width=320

@@ -15,6 +15,6 @@ func create_grass_effect():
 	grassEffect.global_position = global_position # sets the position of the effect to this position
 
 
-func _on_Hurtbox_area_entered(area):
+func _on_Hurtbox_area_entered(_area):
 	create_grass_effect()
 	queue_free()
