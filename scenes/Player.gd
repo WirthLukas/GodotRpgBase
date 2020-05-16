@@ -4,10 +4,10 @@ enum State {
 	MOVE, ROLL, ATTACK
 }
 
-const ACCELERATION = 400
-const MAX_SPEED = 80
-const ROLL_SPEED = 120 # roll should be a little faster than normal speed
-const FRICTION = 500
+export var ACCELERATION = 400
+export var MAX_SPEED = 80
+export var ROLL_SPEED = 120 # roll should be a little faster than normal speed
+export var FRICTION = 500
 
 var state = State.MOVE
 var velocity = Vector2.ZERO
