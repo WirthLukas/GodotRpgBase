@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://scenes/decoration/Bush.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/players/Player.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/World/CliffTileset.png" type="Texture" id=6]
 [ext_resource path="res://scenes/decoration/Grass.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/enemies/bat/Bat.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/view/HealthUi.tscn" type="PackedScene" id=9]
 
 [sub_resource type="TileSet" id=1]
 0/name = "DirtTileset.png 0"
@@ -564,3 +565,5 @@ position = Vector2( 176, 104 )
 
 [node name="Bat3" parent="YSort" instance=ExtResource( 8 )]
 position = Vector2( 136, 168 )
+
+[node name="HealthUi" parent="." instance=ExtResource( 9 )]
