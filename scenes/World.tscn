@@ -483,7 +483,7 @@ script = ExtResource( 5 )
 position = Vector2( 160, 90 )
 texture = ExtResource( 3 )
 region_enabled = true
-region_rect = Rect2( -128, -64, 320, 180 )
+region_rect = Rect2( -128, -112, 640, 496 )
 
 [node name="DirtPathTileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
@@ -502,6 +502,10 @@ tile_data = PoolIntArray( -1, 0, 0, -65536, 0, 1, -65535, 0, 1, -65534, 0, 1, -6
 
 [node name="Player" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 96, 48 )
+
+[node name="Camera2D" type="Camera2D" parent="YSort/Player"]
+current = true
+smoothing_enabled = true
 
 [node name="Bushes" type="YSort" parent="YSort"]
 
@@ -575,7 +579,9 @@ position = Vector2( 176, 104 )
 [node name="Bat3" parent="YSort" instance=ExtResource( 8 )]
 position = Vector2( 136, 168 )
 
-[node name="HealthUi" parent="." instance=ExtResource( 9 )]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthUi" parent="CanvasLayer" instance=ExtResource( 9 )]
 margin_left = 7.11507
 margin_top = 3.16225
 margin_right = 87.1151
