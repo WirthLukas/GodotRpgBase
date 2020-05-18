@@ -40,3 +40,8 @@ You have to set the Mask of the Collision to Player, so that the signal only get
 ## Hearts UI
 
 If you want to set the TextureRect's width to 0, you must activate the expand option
+
+## Shader 
+
+Godot Shares Resources among instances of the same scene. So if you start an shader on a bat, it will be executed on all bats at same time.
+If you don't want this you have to activate the **local to scene** option in the shader menu of the sprite.

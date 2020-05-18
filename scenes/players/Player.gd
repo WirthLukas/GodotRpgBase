@@ -9,6 +9,8 @@ export var MAX_SPEED = 80
 export var ROLL_SPEED = 120 # roll should be a little faster than normal speed
 export var FRICTION = 500
 
+const PlayerHurtSound = preload("res://scenes/players/PlayerHurtSound.tscn")
+
 var state = State.MOVE
 var velocity = Vector2.ZERO
 var roll_vector = Vector2.DOWN
@@ -19,6 +21,7 @@ onready var animation_tree = $AnimationTree
 onready var animation_state = animation_tree.get("parameters/playback")
 onready var swordHitbox = $HitboxPivot/SwordHitbox
 onready var hurtbox = $Hurtbox
+onready var blink_animation_player = $BlinkAnimationPlayer
 
 func _ready():
 	stats.connect("no_health", self, "queue_free")
@@ -97,7 +100,17 @@ func attack_animation_finished():
 	state = State.MOVE
 
 
-func _on_Hurtbox_area_entered(_area):
-	stats.health -= 1
-	hurtbox.start_invincibility(0.5)
+func _on_Hurtbox_area_entered(area):
+	stats.health -= area.damage
+	hurtbox.start_invincibility(0.6)
 	hurtbox.create_hit_effect()
+	var player_hurt_sound = PlayerHurtSound.instance()
+	get_tree().current_scene.add_child(player_hurt_sound)
+
+
+func _on_Hurtbox_invincibility_started():
+	blink_animation_player.play("Start")
+
+
+func _on_Hurtbox_invincibility_ended():
+	blink_animation_player.play("Stop")
