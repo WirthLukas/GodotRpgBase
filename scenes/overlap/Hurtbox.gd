@@ -5,6 +5,7 @@ const HitEffect = preload("res://scenes/effects/HitEffect.tscn")
 var invincible = false setget set_invincible
 
 onready var timer = $Timer
+onready var collision_shape = $CollisionShape2D
 
 signal invincibility_started
 signal invincibility_ended
@@ -42,10 +43,10 @@ func _on_Timer_timeout():
 func _on_Hurtbox_invincibility_started():
 	# when setting it to true, the cosisponding signals gets 
 	# recalled => solution for bat attack at a corner doesn't work
-	set_deferred("monitorable", false)
+	collision_shape.set_deferred("disabled", true)
 	#set deffered, cause this gets called during physics process
 	# so we have to call this method, so that the value gets changed after the game Loop
 
 
 func _on_Hurtbox_invincibility_ended():
-	monitorable = true
+	collision_shape.disabled = false

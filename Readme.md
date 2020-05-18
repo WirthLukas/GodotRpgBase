@@ -45,3 +45,7 @@ If you want to set the TextureRect's width to 0, you must activate the expand op
 
 Godot Shares Resources among instances of the same scene. So if you start an shader on a bat, it will be executed on all bats at same time.
 If you don't want this you have to activate the **local to scene** option in the shader menu of the sprite.
+
+## Camera
+
+We build our own visual limit builder for the camera with Position2D Nodes. But if we append them to the camera, they will also move when the camera moves. A good trick is to append a normal **Node** Node to the camera (which does not changes its position) and append the Position2D Nodes to the **Node** Node. With this trick, the Position2D Notes will not move anymore
